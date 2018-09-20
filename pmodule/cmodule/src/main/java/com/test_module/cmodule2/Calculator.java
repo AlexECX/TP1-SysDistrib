@@ -5,9 +5,13 @@ import java.rmi.*;
  */
 public interface Calculator extends Remote {
 
-    public String add() throws RemoteException;
+    public double add(double x, double y) throws RemoteException;
 
-    public void sub() throws RemoteException;
+    public double sub(double x, double y) throws RemoteException;
+
+    public double mul(double x, double y) throws RemoteException;
+
+    public double div(double x, double y) throws RemoteException;
 
     
 }

@@ -13,7 +13,9 @@ public interface IAiguilleurServer extends Remote {
 
     public void registerCalculator(Calculator calc) throws RemoteException;
 
-    public Calculator getCalculator() throws RemoteException;
+    public void unregisterCalculator(Calculator calc) throws RemoteException;
 
-    public boolean isRegistered(Calculator calc) throws RemoteException;
+    public double compute(String op, double x, double y) 
+                    throws RemoteException, AiguilleurException;
+
 }

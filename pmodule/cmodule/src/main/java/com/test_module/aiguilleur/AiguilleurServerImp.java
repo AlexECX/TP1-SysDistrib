@@ -70,19 +70,21 @@ public class AiguilleurServerImp extends UnicastRemoteObject
         while (!success) {
             try {
                 Calculator calc = this.getCalculator();
-                if (op.equals("add")) {
-                    result = calc.add(x,y);
-                } else if (op.equals("sub")) {
-                    result = calc.sub(x,y);
-                } else if (op.equals("mul")) {
-                    result = calc.mul(x,y);
-                } else if (op.equals("div")) {
-                    result = calc.div(x,y);
-                } else {
-                    throw new AiguilleurException(
-                        "The " + op + " method is not implemented"
-                        );
-                }
+                result = calc.compute(op, x, y);
+
+                // if (op.equals("add")) {
+                //     result = calc.add(x,y);
+                // } else if (op.equals("sub")) {
+                //     result = calc.sub(x,y);
+                // } else if (op.equals("mul")) {
+                //     result = calc.mul(x,y);
+                // } else if (op.equals("div")) {
+                //     result = calc.div(x,y);
+                // } else {
+                //     throw new AiguilleurException(
+                //         "The " + op + " method is not implemented"
+                //         );
+                // }
                 available_calc.add(calc);
                 success = true;
             } catch (RemoteException e) {

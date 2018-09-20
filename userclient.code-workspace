@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "dist_calc"
+		}
+	],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "interactive"
+    }
+}

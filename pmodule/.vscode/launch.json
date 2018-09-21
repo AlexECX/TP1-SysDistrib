@@ -16,12 +16,12 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Aiguilleur<cmodule>",
+            "name": "Debug (Launch)-AiguilleurServer<cmodule>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "stopOnEntry": false,
-            "mainClass": "com.test_module.aiguilleur.Aiguilleur",
+            "mainClass": "com.test_module.aiguilleur.AiguilleurServer",
             "args": "",
             "projectName": "cmodule"
         },

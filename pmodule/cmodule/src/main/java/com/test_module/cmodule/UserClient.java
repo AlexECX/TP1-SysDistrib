@@ -6,8 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import com.test_module.aiguilleur.AiguilleurException;
-import com.test_module.aiguilleur.IAiguilleurServer;
-import com.test_module.cmodule2.Calculator;
+import com.test_module.aiguilleur.Aiguilleur;
 import com.test_module.cmodule2.CalculatorException;
 
 /**
@@ -19,7 +18,8 @@ public class UserClient {
         System.out.println("UserClient launched");
 
         try {
-            IAiguilleurServer server = (IAiguilleurServer) Naming.lookup("//localhost:8888/AiguilleurServerImp");
+            Aiguilleur server = (Aiguilleur) 
+                        Naming.lookup("//localhost:8888/AiguilleurServerImp");
             double x;
             x = server.compute("add", 2.0, 2.0);
             System.out.println(x);

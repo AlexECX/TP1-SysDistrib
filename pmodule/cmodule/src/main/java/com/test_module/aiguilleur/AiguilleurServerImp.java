@@ -17,7 +17,7 @@ import com.test_module.cmodule2.CalculatorException;
 /**
  * AiguilleurServerImp
  */
-public class AiguilleurServerImp extends UnicastRemoteObject implements IAiguilleurServer {
+public class AiguilleurServerImp extends UnicastRemoteObject implements Aiguilleur {
 
     private static final long serialVersionUID = 7904298767131555500L;
 
@@ -59,7 +59,7 @@ public class AiguilleurServerImp extends UnicastRemoteObject implements IAiguill
         }
     }
 
-    public synchronized double compute(String op, double x, double y) 
+    public synchronized double compute(String op, double x, double y)
             throws RemoteException, AiguilleurException, CalculatorException {
         boolean success = false;
         double result = -1;

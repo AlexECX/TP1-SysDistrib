@@ -12,12 +12,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import com.test_module.cmodule2.CalculatorImp;
 import com.test_module.cmodule2.Calculator;
+import com.test_module.cmodule2.CalculatorException;
 
 /**
  * AiguilleurServerImp
  */
-public class AiguilleurServerImp extends UnicastRemoteObject 
-                                 implements IAiguilleurServer {
+public class AiguilleurServerImp extends UnicastRemoteObject implements IAiguilleurServer {
 
     private static final long serialVersionUID = 7904298767131555500L;
 
@@ -25,9 +25,7 @@ public class AiguilleurServerImp extends UnicastRemoteObject
 
     private List<Calculator> available_calc;
 
-    private synchronized Calculator getCalculator() 
-                                   throws RemoteException, AiguilleurException {
-        System.out.println("getCalculator");
+    private synchronized Calculator getCalculator() throws RemoteException, AiguilleurException {
         Calculator mycalc = null;
         while (mycalc == null) {
             try {
@@ -45,8 +43,7 @@ public class AiguilleurServerImp extends UnicastRemoteObject
         available_calc = Collections.synchronizedList(arr);
     }
 
-    public synchronized void registerCalculator(Calculator calc) 
-                                throws RemoteException {
+    public synchronized void registerCalculator(Calculator calc) throws RemoteException {
         if (!(calc_vec.contains(calc))) {
             calc_vec.addElement(calc);
             available_calc.add(calc);
@@ -54,37 +51,22 @@ public class AiguilleurServerImp extends UnicastRemoteObject
         }
     }
 
-    public synchronized void unregisterCalculator(Calculator calc)
-                                throws RemoteException {
+    public synchronized void unregisterCalculator(Calculator calc) throws RemoteException {
         if (calc_vec.contains(calc)) {
             available_calc.remove(calc);
             calc_vec.remove(calc);
             System.out.println("unregistered Calculator");
-        }                          
+        }
     }
 
     public synchronized double compute(String op, double x, double y) 
-                                throws RemoteException, AiguilleurException {
+            throws RemoteException, AiguilleurException, CalculatorException {
         boolean success = false;
         double result = -1;
         while (!success) {
             try {
                 Calculator calc = this.getCalculator();
                 result = calc.compute(op, x, y);
-
-                // if (op.equals("add")) {
-                //     result = calc.add(x,y);
-                // } else if (op.equals("sub")) {
-                //     result = calc.sub(x,y);
-                // } else if (op.equals("mul")) {
-                //     result = calc.mul(x,y);
-                // } else if (op.equals("div")) {
-                //     result = calc.div(x,y);
-                // } else {
-                //     throw new AiguilleurException(
-                //         "The " + op + " method is not implemented"
-                //         );
-                // }
                 available_calc.add(calc);
                 success = true;
             } catch (RemoteException e) {
@@ -92,7 +74,7 @@ public class AiguilleurServerImp extends UnicastRemoteObject
                 try {
                     Thread.sleep(2);
                 } catch (InterruptedException e1) {
-                   //pass
+                    // pass
                 }
             }
         }

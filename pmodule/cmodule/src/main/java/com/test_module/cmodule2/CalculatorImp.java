@@ -30,19 +30,19 @@ public class CalculatorImp extends UnicastRemoteObject implements Calculator{
         }
     }
 
-    public double add(double x, double y) throws RemoteException {
+    private double add(double x, double y) throws RemoteException {
         return x + y;
     }
 
-    public double sub(double x, double y) throws RemoteException {
+    private double sub(double x, double y) throws RemoteException {
         return x - y;
     }
 
-    public double mul(double x, double y) throws RemoteException {
+    private double mul(double x, double y) throws RemoteException {
         return x * y;
     }
 
-    public double div(double x, double y) throws RemoteException {
+    private double div(double x, double y) throws RemoteException {
         return x / y;
     }
 

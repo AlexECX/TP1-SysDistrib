@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import com.test_module.cmodule2.CalculatorImp;
+import com.test_module.cmodule.Client;
 import com.test_module.cmodule2.Calculator;
 import com.test_module.cmodule2.CalculatorException;
 
@@ -59,14 +60,14 @@ public class AiguilleurServerImp extends UnicastRemoteObject implements Aiguille
         }
     }
 
-    public synchronized double compute(String op, double x, double y)
+    public synchronized void compute(Client client)
             throws RemoteException, AiguilleurException, CalculatorException {
+        
         boolean success = false;
-        double result = -1;
         while (!success) {
             try {
                 Calculator calc = this.getCalculator();
-                result = calc.compute(op, x, y);
+                calc.compute(client);
                 available_calc.add(calc);
                 success = true;
             } catch (RemoteException e) {
@@ -78,7 +79,6 @@ public class AiguilleurServerImp extends UnicastRemoteObject implements Aiguille
                 }
             }
         }
-        return result;
 
     }
 

@@ -16,7 +16,7 @@ public class CalcServer {
     public static void main(String[] args) {
         try {
             CalculatorImp calculator = new CalculatorImp();
-            Aiguilleur server = (Aiguilleur) Naming.lookup("//localhost:8888/AiguilleurServerImp");
+            Aiguilleur server = (Aiguilleur) Naming.lookup("//localhost:8123/AiguilleurServerImp");
             server.registerCalculator(calculator);
             System.out.println("Calculator ready");
         } catch (RemoteException e) {

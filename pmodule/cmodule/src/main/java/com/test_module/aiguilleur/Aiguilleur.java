@@ -3,6 +3,7 @@ package com.test_module.aiguilleur;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import com.test_module.cmodule.Client;
 import com.test_module.cmodule2.Calculator;
 import com.test_module.cmodule2.CalculatorException;
 
@@ -15,7 +16,7 @@ public interface Aiguilleur extends Remote {
 
     public void unregisterCalculator(Calculator calc) throws RemoteException;
 
-    public double compute(String op, double x, double y)
+    public void compute(Client client)
             throws RemoteException, AiguilleurException, CalculatorException;
 
 }

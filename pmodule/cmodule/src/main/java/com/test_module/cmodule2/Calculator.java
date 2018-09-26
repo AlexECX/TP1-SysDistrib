@@ -1,11 +1,13 @@
 package com.test_module.cmodule2;
 import java.rmi.*;
+
+import com.test_module.cmodule.Client;
 /**
  * Calculator
  */
 public interface Calculator extends Remote {
 
-    public double compute(String op, double x, double y)
+    public void compute(Client client)
                     throws RemoteException, CalculatorException;
 
     // public double add(double x, double y) throws RemoteException;

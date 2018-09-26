@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import com.test_module.aiguilleur.AiguilleurException;
 import com.test_module.aiguilleur.Aiguilleur;
 import com.test_module.cmodule2.CalculatorException;
+import com.test_module.cmodule.Operation;
 
 /**
  * UserClient
@@ -19,16 +20,15 @@ public class UserClient {
 
         try {
             Aiguilleur server = (Aiguilleur) 
-                        Naming.lookup("//localhost:8888/AiguilleurServerImp");
-            double x;
-            x = server.compute("add", 2.0, 2.0);
-            System.out.println(x);
-            x = server.compute("sub", 2.0, 2.0);
-            System.out.println(x);
-            x = server.compute("mul", 2.0, 2.0);
-            System.out.println(x);
-            x = server.compute("div", 2.0, 2.0);
-            System.out.println(x);
+                        Naming.lookup("//localhost:8123/AiguilleurServerImp");
+            Client client = new ClientImp(new Operation("add", 3.0, 2.0));
+            server.compute(client);
+            client.setOperation(new Operation("sub", 3.0, 2.0));
+            server.compute(client);
+            client.setOperation(new Operation("mul", 3.0, 2.0));
+            server.compute(client);
+            client.setOperation(new Operation("div", 3.0, 2.0));
+            server.compute(client);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

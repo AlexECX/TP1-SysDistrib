@@ -15,9 +15,9 @@ public class AiguilleurServer {
 
     public static void main(String[] args) {
         try {
-            startRegistry(8888);
+            startRegistry(8123);
             AiguilleurServerImp server = new AiguilleurServerImp();
-            Naming.rebind("//localhost:8888/AiguilleurServerImp", server);
+            Naming.rebind("//localhost:8123/AiguilleurServerImp", server);
             System.out.println("AiguilleurServer ready");
 
         } catch (MalformedURLException e) {
